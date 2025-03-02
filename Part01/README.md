@@ -24,7 +24,8 @@ This repository provides a web-based chat interface and Python API backend that 
 To get started with this project, follow these steps:
 
 1. **Clone this repository**
-    Clones this repo, then go to the Part01 folder
+    
+    Clone this repo, then go to the Part01 folder
 
     ```bash
     git clone https://github.com/jvroig/journey-to-agentic-ai-from-first-principles.git
