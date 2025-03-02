@@ -1,0 +1,445 @@
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: url('fonts/IBMPlexSans-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#form-controls-upper,
+#form-controls-main,
+#team-advisor,
+#sidebar {
+    font-family: 'IBM Plex Sans', sans-serif
+}
+
+#main_content_wrapper {
+    background: #1a1a1a;
+    padding: 10px;
+    padding-top: 40px;
+    font-size: 16px;
+}
+
+
+body {
+    padding: 50px;
+    background-image: url('images/gradient.jpg');
+    background-size: auto;
+    background-color: #121212; /* Dark background color */
+    color: #cccccc; /* Light text color */
+} 
+
+.banner {
+    background-color: #1a1a1a; /* Match the container's background color */
+    color: #ffffff; /* Text color for the banner */
+    text-align: center; /* Center-align the text */
+    padding: 10px; /* Add some padding for spacing */
+    font-size: 24px; /* Adjust the font size */
+    font-weight: bold; /* Make the text bold */
+    margin-bottom: 20px; /* Add margin to separate it from the content below */
+}
+
+.container {
+    background-color: #1a1a1a; /* Slightly lighter background for the container */
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-control {
+    background-color: #2b2b2b; /* Dark input fields */
+    color: #ffffff; /* Light text color for input fields */
+    border: 1px solid #424242; /* Slightly lighter border */
+}
+
+.form-control:focus {
+    background-color: #2b2b2b; /* Dark background color on input focus */
+    color: #ffffff; /* Light text color for input fields */
+}
+
+.form-select {
+    background-color: #2b2b2b; /* Dark select boxes */
+    color: #ffffff; /* Light text color for select options */
+    border: 1px solid #424242; /* Slightly lighter border */
+}
+
+/* Optional: Style select options */
+select option {
+    background-color: #2b2b2b; /* Dark select options */
+    color: #ffffff; /* Light text color for select options */
+}
+
+[readonly] {
+    color: #a9a9a9; /* Light gray color for readonly text */
+}
+
+.nav-tabs {
+    background-color: #1a1a1a; /* Background color for tabs */
+    border: 0px solid #424242; /* Border color for tabs */
+    border-bottom: 1px solid #424242; /* Border color for tabs */
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link {
+    background-color: #1a1a1a; /* Dark tab background color */
+    color: #ffffff; /* Light text color for tabs */
+    border: 1px solid #424242; /* Border for tabs */
+    border-radius: 5px 5px 0 0;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #e16e03; /* Background color for the active tab */
+    color: #000000; /* Text color for the active tab */
+    font-weight: bold;
+    border: 1px solid #424242; /* Border for the active tab */
+    border-radius: 5px 5px 0 0;
+}
+
+
+.jumbotron {
+    background: none;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.bi {
+    color: #e16e03;    
+}
+
+#system_message {
+    color: #e16e03;
+    height: 80px;
+    font-size: 12px;
+    resize: none;
+}
+
+#system_message::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+    background-color: #333; /* Background color of the scrollbar track */
+}
+
+/* Style the scrollbar thumb */
+#system_message::-webkit-scrollbar-thumb {
+    background-color: #666; /* Color of the scrollbar thumb */
+}
+
+/* Style the spinner arrows for number inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Remove default appearance */
+    appearance: none; /* Remove default appearance for non-WebKit browsers */
+    height: auto;
+    margin: 1px; 
+    color: #000000; /* Change arrow color */
+    background-color: #444444; /* Change background color */
+    border-radius: 0%; /* Make the arrows circular */
+    padding: 4px; /* Adjust padding for spacing */
+}
+
+.main {
+    margin-left: 0;
+    padding: 0px 10px;
+    transition: margin-left 0.5s;
+}
+
+.main.opened {
+    margin-left: 400px;
+}
+
+.box {
+    border: 1px solid #424242;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.box h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.box .form-group {
+    margin-bottom: 15px;
+}
+
+.box label {
+    color: #ccc;
+}
+
+.box input[type="text"] {
+    border: 1px solid #555;
+}
+
+/*
+Reduce font size inside the controls area
+*/
+.box div {
+    font-size: 14px;
+}
+
+.box div input {
+    font-size: 14px;
+}
+
+.box div select {
+    font-size: 14px;
+}
+
+.group-label {
+    font-size: 17px;
+    color: #4ba1fe;
+    color: #cccccc;
+    background-color: #2b2b2b;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 10px;
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 20px;
+}
+
+.chart_area {
+    background-color: #ffffff;
+    max-width: 1000px;
+    max-height: 600px;
+}
+
+.btn-engage {
+    background-color: #e16e03;
+    font-weight: bold;
+    color: #111;
+}
+
+.btn-engage:hover {
+    background-color: #e16e03;
+    font-weight: bold;
+    color: #111;
+}
+
+.btn-secondary {
+    background-color: #4a4a4a;
+    color: #ffffff;
+    border: 1px solid #424242;
+}
+
+.btn-secondary:hover {
+    background-color: #5a5a5a;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: 7px;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #e16e03;
+    margin-top: -6px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    background: #696969;
+    border: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #797979;
+}
+
+
+input[type="text"],
+input[type="number"],
+textarea.form-control {
+    transition: box-shadow 0.3s ease; /* Smooth transition for the box-shadow */
+}
+
+/* Style the input when it is focused */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select.form-control:focus,
+textarea.form-control:focus {
+    outline: none; /* Remove the default focus outline */
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Orange glowing shadow */
+    border-color: #e16e03;
+}
+
+input[type="text"].form-control:-webkit-autofill,
+input[type="text"].form-control:-webkit-autofill:hover, 
+input[type="text"].form-control:-webkit-autofill:focus, 
+input[type="text"].form-control:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #2b2b2b inset !important;
+    border: 1px solid #424242; /* Slightly lighter border */
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    transition: background-color 5000s ease-in-out 0s;    background-color: #2b2b2b; /* Dark input fields */
+    color: #ffffff; /* Light text color for input fields */
+    background-color: #2b2b2b; /* Dark input fields */
+    color: #ffffff; /* Light text color for input fields */
+
+}
+
+
+::selection {
+    color: #000000;
+    background-color: #e16e03;    
+}
+
+#chat-container {
+    background-color: #2b2b2b; /* Dark container background */
+    border: 1px solid #424242; /* Slightly lighter border */
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#chat-messages {
+    height: 200px;
+    overflow-y: auto; /* Auto-scroll for overflow */
+    padding: 10px;
+    background-color: #2b2b2b; /* Dark background for messages */
+    border: 1px solid #424242; /* Slightly lighter border */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#chat-input {
+    width: calc(100% - 70px); /* Adjust width to fit button */
+    padding: 5px;
+    margin-right: 5px; /* Add spacing between input and button */
+    background-color: #2b2b2b; /* Dark input background */
+    color: #ffffff; /* Light text color for input */
+    border: 1px solid #424242; /* Slightly lighter border */
+    border-radius: 3px;
+}
+
+#chat-form button {
+    width: 70px; /* Adjust button width */
+    padding: 5px;
+    background-color: #e16e03; /* Button background color */
+    color: #000000; /* Button text color */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#chat-form button:hover {
+    background-color: #e16e03; /* Button hover background color */
+}
+
+
+.chat-area {
+    min-height: 600px;
+/*
+    max-height: 60vh;
+    overflow-y: scroll;
+*/
+    border: 1px solid #ccc;
+    padding: 1px;
+
+    background-color: #2b2b2b; /* Dark container background */
+    border: 1px solid #424242; /* Slightly lighter border */
+    border-radius: 5px;
+}
+
+.bot-title {
+    color: #cccccc;
+    border: 1px dotted #e16e03;
+    width: 40px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.bot-logo {
+    font-size: 24px;
+}
+
+.user-title {
+    color: #cccccc;
+    border: 1px dotted #e16e03;
+    color: #ffffff;
+    border: 1px dotted #000000;
+    width: 40px;
+    margin-bottom: 5px;
+    text-align: center;   
+}
+
+.user-logo {
+    font-size: 24px;
+    color: #000000;
+}
+
+.chat-message {
+    padding: 20px;
+    font-family: 'IBM Plex Sans';
+}
+
+.chat-message.user {
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: black;
+    border: solid 1px #e16e03;
+    border-radius: 10px;
+    background-color: #e16e03;
+    width: 700px;
+}
+
+.chat-message.bot {
+    text-align: left;
+    color: white;
+    border: solid 1px #2b2b2b;
+    background-color: #2b2b2b;
+}
+
+.typing-indicator {
+    background-color: #e6e6e6;
+    width: fit-content;
+    border-radius: 15px;
+    padding: 10px;
+    align-items: center;
+    height: 30px;
+    display: none;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.typing-indicator span {
+    height: 10px;
+    float: left;
+    margin: 0 1px;
+    display: block;
+    padding-bottom: 10px;
+}
+.typing-indicator span.dot-anim {
+    height: 10px;
+    width: 10px;
+    float: left;
+    margin: 0 1px;
+    background-color: #9E9EA1;
+    display: block;
+    border-radius: 50%;
+    opacity: 0.4;
+    padding-bottom: 10px;
+}
+.typing-indicator span:nth-of-type(1) { animation: 1s blink infinite 0.3333s; }
+.typing-indicator span:nth-of-type(2) { animation: 1s blink infinite 0.6666s; }
+.typing-indicator span:nth-of-type(3) { animation: 1s blink infinite 0.9999s; }
+@keyframes blink {
+    50% { opacity: 1; }
+}
