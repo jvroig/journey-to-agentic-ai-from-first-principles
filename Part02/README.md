@@ -1,4 +1,4 @@
-# Journey to Agentic AI, Starting From First Principles, Part 1: From Next-Token to Tool-Use: How to Give LLMs the Ability to Use Tools
+# Journey to Agentic AI, Starting From First Principles, Part 1: Giving Control of Our Computer to an LLM
 
 ## Original Blog Post
 This repo is a companion to the [full article on Medium](https://medium.com/@jvroig/from-next-token-to-tool-use-how-to-give-llms-the-ability-to-use-tools-d26a2db2a9ae) that goes through the fundamentals of enabling LLMs to use tools.
