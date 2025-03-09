@@ -4,6 +4,7 @@
 This repo is a companion to the [full article on Medium](https://medium.com/@jvroig/from-next-token-to-tool-use-how-to-give-llms-the-ability-to-use-tools-d26a2db2a9ae) that goes through the fundamentals of enabling LLMs to use tools.
 
 
+
 ## Overview
 
 This repository provides a web-based chat interface and Python API backend that equips LLMs with tools. 
@@ -14,30 +15,56 @@ This repository provides a web-based chat interface and Python API backend that 
 
 Although the sample code defaults to hitting an Alibaba Cloud Model Studio endpoint in order to use a Qwen model (you’ll need an Alibaba Cloud account and valid Model Studio API Key), the code just uses standard OpenAI API-compatible calls, so you can swap it out for any other endpoint you want, including any vLLM, TGI, or llama.cpp server that you are running yourself, using any LLM you want.
 
-
 ### Features
 
+- **Get Current Working Directory**: Retrieve the current working directory.
 - **Read Files**: Read the contents of files within the filesystem.
+- **Write Files**: Write content to files in the filesystem.
+- **Create Directories**: Create new directories in the filesystem.
+- **List Directory Contents**: List all files and directories in a specified path (or the current working directory).
 
 ### Tool Descriptions
 
-1. **read-file**
+1. **get-cwd**
+    - **Description**: Get the current working directory.
+    - **Parameters**: None.
+    - **Returns**: String - information about the current working directory.
+
+2. **read-file**
     - **Description**: Read a file in the filesystem.
     - **Parameters**:
       - `path` (required, string): Path and filename of the file to read.
     - **Returns**: String - the contents of the file specified in `path`.
 
-### Installation
+3. **write-file**
+    - **Description**: Write content to a file in the filesystem.
+    - **Parameters**:
+      - `path` (required, string): Path and filename of the file to write.
+      - `content` (required, string): The content to write to the file.
+    - **Returns**: String - confirmation message indicating success or failure.
+
+4. **create-directory**
+    - **Description**: Create a new directory in the filesystem.
+    - **Parameters**:
+      - `path` (required, string): Path of the directory to create.
+    - **Returns**: String - confirmation message indicating success or failure.
+
+5. **list-directory**
+    - **Description**: List the contents of a directory in the filesystem.
+    - **Parameters**:
+      - `path` (optional, string): Path of the directory to list. If not provided, lists the current working directory.
+    - **Returns**: String - a list of files and directories in the specified path.
+
 
 To get started with this project, follow these steps:
 
 1. **Clone this repository**
     
-    Clone this repo, then go to the Part01 folder
+    Clone this repo, then go to the Part02 folder
 
     ```bash
     git clone https://github.com/jvroig/journey-to-agentic-ai-from-first-principles.git
-    cd Part01
+    cd Part02
     ```
 
 1. **Set Up a Virtual Environment (Optional but Recommended)**
@@ -58,10 +85,6 @@ To get started with this project, follow these steps:
 
 ### Access the Web Interface
 
-In your file browser, double-click the file index.html to load the chat interface in your default browser.
+In your file browser, double-click the file Part02/index.html to load the chat interface in your default browser.
 
 The web interface allows you to communicate with the LLM using natural language commands and tell it to use tools available.
-
-As of Part 1, only 1 tool is available: read-file
-
-"Read the file at path /example/path/to/file.txt."
