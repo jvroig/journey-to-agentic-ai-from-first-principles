@@ -81,7 +81,6 @@ def list_directory(path="."):
         str: A list of files and directories, or an error message if listing fails.
     """
     try:
-        import time
         contents = os.listdir(path)
         return f"Contents of directory '{path}': {', '.join(contents)}"
     except FileNotFoundError:

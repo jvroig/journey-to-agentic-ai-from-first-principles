@@ -15,7 +15,8 @@ CORS(app)
 load_dotenv()
 api_key = os.getenv('DASHSCOPE_API_KEY')
 base_url = 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1'
-base_url = "http://127.0.0.1:8080"
+#For your own local server, you can simply do something like this:
+#base_url = "http://127.0.0.1:8080"
 
 @app.route('/api/chat', methods=['POST'])
 def query_endpoint():

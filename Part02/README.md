@@ -1,7 +1,7 @@
 # Journey to Agentic AI, Starting From First Principles, Part 2: Giving Control of Our Computer to an LLM
 
 ## Original Blog Post
-This repo is a companion to the [full article on Medium](https://medium.com/@jvroig/from-next-token-to-tool-use-how-to-give-llms-the-ability-to-use-tools-d26a2db2a9ae) that goes through how to allow an LLM to take more actions in our computer.
+This repo is a companion to the original Medium article "Journey to Agentic AI, Starting From First Principles, Part 2: Giving Control of Our Computer to an LLM" by JV Roig, that goes through how to allow an LLM to take more actions in our computer. (Link to be placed here upon publication)
 
 
 ## Overview

@@ -1,0 +1,18 @@
+Find the passwords.txt file, somewhere inside the qwen_playground folder.
+It will contain random passwords made up of english words.
+For each password, determine if it references one of the following categories:
+- person/people
+- place
+- thing
+- other
+
+Then, write new files inside the "processed" subdirectory":
+- "person_passwords.txt" - if there are one or more passwords that belong to the person/people category
+- "place_passwords.txt" - if there are one or more passwords that belong to the place category
+- "thing_passwords.txt" - if there are one or more passwords that belong to the thing category
+- "other_passwords.txt" - if there are one or more passwords that belong to the "other" category (i.e., does not fit with any of the earlier three categories)
+
+
+When you are done, review each new file to ensure that you have successfully written them.
+
+Rewrite files as needed (for example, if they are missing).
