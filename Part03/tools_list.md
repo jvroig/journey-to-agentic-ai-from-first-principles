@@ -1,0 +1,13 @@
+- `get_cwd`: Retrieves the current working directory.
+- `read_file`: Reads and returns the content of a specified file.
+- `write_file`: Writes provided content to a specified file.
+- `create_directory`: Creates a new directory at the specified path.
+- `list_directory`: Lists all files and directories in the specified path (or current directory if none is provided).
+- `git_clone`: Clones a Git repository from a given URL to a specified or default location.
+- `git_commit`: Stages all changes and creates a commit with a specified message in a Git repository.
+- `git_restore`: Restores files or the entire repository to a previous state based on a commit hash or unstages changes.
+- `git_push`: Pushes local commits to a specified remote branch in a Git repository.
+- `git_log`: Provides the commit history of a Git repository, optionally limited by count or date range.
+- `git_show`: Displays detailed information about a specific commit in a Git repository.
+- `git_status`: Shows the current status of a Git repository, including staged, unstaged, and untracked changes.
+- `git_diff`: Displays differences between commits, staged changes, or the working directory in a Git repository.

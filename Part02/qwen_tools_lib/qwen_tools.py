@@ -1,5 +1,10 @@
 def list_tools():
     tools_available = """
+-read_file: Read a file in the filesystem
+    Parameters:
+    - path (required, string): path and filename of the file to read 
+    Returns: String - the contents of the file specified in `path`
+    
 -get_cwd: Get the current working directory
     Parameters: None. This tool does not need a parameter.
     Returns: String - information about the current working directory
@@ -8,24 +13,17 @@ def list_tools():
     Parameters:
     - path (optional, string): path of the directory to list. If not provided, lists the current working directory.
     Returns: String - a list of files and directories in the specified path
-    
--read_file: Read a file in the filesystem
-    Parameters:
-    - path (required, string): path and filename of the file to read 
-    Returns: String - the contents of the file specified in `path`
-
--write_file: Write content to a file in the filesystem
-    Parameters:
-    - path (required, string): path and filename of the file to write
-    - content (required, string): the content to write to the file
-    Returns: String - confirmation message indicating success or failure
 
 -create_directory: Create a new directory in the filesystem
     Parameters:
     - path (required, string): path of the directory to create
     Returns: String - confirmation message indicating success or failure
 
-
+-write_file: Write content to a file in the filesystem
+    Parameters:
+    - path (required, string): path and filename of the file to write
+    - content (required, string): the content to write to the file
+    Returns: String - confirmation message indicating success or failure
 
 """
     return tools_available
