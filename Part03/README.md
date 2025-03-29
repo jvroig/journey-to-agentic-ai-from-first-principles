@@ -1,4 +1,4 @@
-# Journey to Agentic AI, Starting From First Principles, Part 2: Giving Control of Our Computer to an LLM
+# Journey to Agentic AI, Starting From First Principles, Part 3: External Services and Git Powers
 
 ## Original Blog Post
 This repo is a companion to the original Medium article [Journey to Agentic AI, Starting From First Principles, Part 3: External Services and Git Powers](https://medium.com/towards-artificial-intelligence/journey-to-agentic-ai-part-3-external-services-and-git-powers-125ae5c2fa20?sk=cf64e0b453aed268e8c0801600e3d903) by JV Roig, that goes through how to allow an LLM to take more actions in our computer. 
@@ -123,7 +123,7 @@ To get started with this project, follow these steps:
 
 1. **Clone this repository**
     
-    Clone this repo, then go to the Part02 folder
+    Clone this repo, then go to the Part03 folder
 
     ```bash
     git clone https://github.com/jvroig/journey-to-agentic-ai-from-first-principles.git
