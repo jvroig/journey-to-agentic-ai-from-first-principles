@@ -1,7 +1,7 @@
-# Journey to Agentic AI, Starting From First Principles, Part 3: External Services and Git Powers
+# Journey to Agentic AI, Starting From First Principles, Part 4: MCP and Web Search Powers
 
 ## Original Blog Post
-This repo is a companion to the original Medium article [Journey to Agentic AI, Starting From First Principles, Part 3: External Services and Git Powers](https://medium.com/towards-artificial-intelligence/journey-to-agentic-ai-part-3-external-services-and-git-powers-125ae5c2fa20?sk=cf64e0b453aed268e8c0801600e3d903) by JV Roig, that goes through how to connect to external services like GitHub, and be able to execute local git operations.
+This repo is a companion to the original Medium article [Journey to Agentic AI, Starting From First Principles, Part 4: MCP and Web Search Powers]() by JV Roig, that goes through how to allow an LLM to take more actions in our computer. 
 
 
 ## Overview
