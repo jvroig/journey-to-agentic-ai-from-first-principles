@@ -1,153 +1,126 @@
-# Journey to Agentic AI, Starting From First Principles, Part 4: MCP and Web Search Powers
+# Journey to Agentic AI, Starting From First Principles, Part 4: MCP in Action, Some Mythbusting and Security Nightmares
 
 ## Original Blog Post
-This repo is a companion to the original Medium article [Journey to Agentic AI, Starting From First Principles, Part 4: MCP and Web Search Powers]() by JV Roig, that goes through how to allow an LLM to take more actions in our computer. 
+This repo is a companion to the original Medium article [Journey to Agentic AI, Starting From First Principles, Part 4: MCP in Action, Some Mythbusting and Security Nightmares](https://medium.com/ai-advances/journey-to-agentic-ai-part-4-mcp-in-action-some-mythbusting-and-security-nightmares-7d990f8db3ef) by JV Roig, that goes through how to connect to external services like GitHub, and be able to execute local git operations.
 
 
 ## Overview
 
-This repository provides a web-based chat interface and Python API backend that equips LLMs with tools. 
+There isn't specific code for this part, but this is a good opportunity to review fundamental principles about tool-calling to understand how and why MCP can be a security nightmare.
 
-**Important Note**: This is an **educational implementation** designed to demonstrate how tool-calling works with Large Language Models (LLMs). It is **not intended for production use**. Please exercise caution when using this code, especially when interacting with sensitive filesystems. Always ensure proper security measures are in place if deploying similar solutions in real-world scenarios.
+Here's a quick recap of how tools information (*how to invoke tools, specific tool descriptions and syntax and parameters...*) are purposely sent to the LLM's system prompt in order for tool-calling to work.
 
-### Changing Endpoints and Models
+In our usual code (available in Parts 1 - 3 of this monorepo), we have this in our `qwen_api.py` file:
+```python
+def format_messages(messages):
+    model = ''
+    endpoint = ''
 
-Although the sample code defaults to hitting an Alibaba Cloud Model Studio endpoint in order to use a Qwen model (you’ll need an Alibaba Cloud account and valid Model Studio API Key), the code just uses standard OpenAI API-compatible calls, so you can swap it out for any other endpoint you want, including any vLLM, TGI, or llama.cpp server that you are running yourself, using any LLM you want.
+    system_prompt = """You are Qwen-Max, an advanced AI model. 
+You will assist the user with tasks, using tools available to you.
 
-### Features
+You have the following tools available:
+-read-file: Read a file in the filesystem
+    Parameters:
+    - path (required, string): path and filename of the file to read 
+    Returns: String - the contents of the file specified in `path`
 
-- **Get Current Working Directory**: Retrieve the current working directory.
-- **Read Files**: Read the contents of files within the filesystem.
-- **Write Files**: Write content to files in the filesystem.
-- **Create Directories**: Create new directories in the filesystem.
-- **List Directory Contents**: List all files and directories in a specified path (or the current working directory).
-- **Git Operations**: Perform various Git operations such as cloning repositories, committing changes, and viewing commit history.
+When you want to use a tool, make a tool call (no explanations) 
+using this exact format:
 
-### Tools Description
+[[qwen-tool-start]]
+{
+    "name": "tool_name",
+    "input": {
+        "param1": "value1",
+        "param2": "value2"
+    }
+}
+[[qwen-tool-end]]
 
-1. **get-cwd**
-    - **Description**: Get the current working directory.
-    - **Parameters**: None.
-    - **Returns**: String - information about the current working directory.
+Example:
+************************
+User: Can you tell me what's inside /home/user/readme.txt?
+Qwen-Max:
+[[qwen-tool-start]]
+{
+    "name": "read-file",
+    "input": "/home/user/readme.txt"
+}
+[[qwen-tool-end]]
+**********************
+"""
+...
+```
+This code is responsible for teaching our LLM how to properly ask for tools, the list of tools it has, and the syntax and argument information for the tool. 
 
-2. **read-file**
-    - **Description**: Read a file in the filesystem.
-    - **Parameters**:
-      - `path` (required, string): Path and filename of the file to read.
-    - **Returns**: String - the contents of the file specified in `path`.
+This snippet was taken from Part 1, where we started with a single tool (`read-file`).
 
-3. **write-file**
-    - **Description**: Write content to a file in the filesystem.
-    - **Parameters**:
-      - `path` (required, string): Path and filename of the file to write.
-      - `content` (required, string): The content to write to the file.
-    - **Returns**: String - confirmation message indicating success or failure.
+Parts 2 and 3 expand on this by adding more tools, and making the prompt a bit more dynamically created instead of fully static, but the spirit is the same: **Giving an LLM some tools means adding a bunch of text into its system prompt!**
 
-4. **create-directory**
-    - **Description**: Create a new directory in the filesystem.
-    - **Parameters**:
-      - `path` (required, string): Path of the directory to create.
-    - **Returns**: String - confirmation message indicating success or failure.
+And this is the first reason why MCP can be security nightmare - connecting to third-party MCP servers you haven't vetted will mean you are allowing these MCP servers to inject arbitrary instructions to your LLM, which, if they were malicious, could be poisoning your LLMs context and turning it into a malicious actor.
 
-5. **list-directory**
-    - **Description**: List the contents of a directory in the filesystem.
-    - **Parameters**:
-      - `path` (optional, string): Path of the directory to list. If not provided, lists the current working directory.
-    - **Returns**: String - a list of files and directories in the specified path.
-
-6. **git-clone**
-    - **Description**: Clone a git repository using HTTPS.
-    - **Parameters**:
-      - `repo_url` (required, string): The HTTPS URL of the repository to clone.
-      - `target_path` (optional, string): The path where to clone the repository.
-    - **Returns**: String - confirmation message indicating success or failure.
-
-7. **git-commit**
-    - **Description**: Stage all changes and create a commit.
-    - **Parameters**:
-      - `message` (required, string): The commit message.
-      - `path` (optional, string): The path to the git repository (defaults to current directory).
-    - **Returns**: String - confirmation message indicating success or failure.
-
-8. **git-restore**
-    - **Description**: Restore the repository or specific files to a previous state.
-    - **Parameters**:
-      - `commit_hash` (optional, string): The commit hash to restore to. If not provided, unstages all changes.
-      - `path` (optional, string): The path to the git repository (defaults to current directory).
-      - `files` (optional, list): List of specific files to restore. If not provided, restores everything.
-    - **Returns**: String - confirmation message indicating success or failure.
-
-9. **git-push**
-    - **Description**: Push commits to a remote repository.
-    - **Parameters**:
-      - `remote` (optional, string): The remote name (defaults to 'origin').
-      - `branch` (optional, string): The branch name to push to (defaults to 'main').
-      - `path` (optional, string): The path to the git repository (defaults to current directory).
-    - **Returns**: String - confirmation message indicating success or failure.
-
-10. **git-log**
-    - **Description**: Get the commit history of the repository.
-    - **Parameters**:
-      - `path` (optional, string): The path to the git repository (defaults to current directory).
-      - `max_count` (optional, integer): Maximum number of commits to return.
-      - `since` (optional, string): Get commits since this date (e.g., "2024-01-01" or "1 week ago").
-    - **Returns**: String - JSON formatted commit history with hash, author, date, and message for each commit.
-
-11. **git-show**
-    - **Description**: Get detailed information about a specific commit.
-    - **Parameters**:
-      - `commit_hash` (required, string): The hash of the commit to inspect.
-      - `path` (optional, string): The path to the git repository (defaults to current directory).
-    - **Returns**: String - JSON formatted commit details including metadata and changed files.
-
-12. **git-status**
-    - **Description**: Get the current status of the repository.
-    - **Parameters**:
-      - `path` (optional, string): The path to the git repository (defaults to current directory).
-    - **Returns**: String - JSON formatted repository status including staged, unstaged, and untracked changes.
-
-13. **git-diff**
-    - **Description**: Get the differences between commits, staged changes, or working directory.
-    - **Parameters**:
-      - `path` (optional, string): The path to the git repository (defaults to current directory).
-      - `commit1` (optional, string): First commit hash for comparison.
-      - `commit2` (optional, string): Second commit hash for comparison.
-      - `staged` (optional, boolean): If True, show staged changes (ignored if commits are specified).
-      - `file_path` (optional, string): Path to specific file to diff.
-    - **Returns**: String - JSON formatted diff information including:
-        - Summary (files changed, total additions/deletions)
-        - Detailed changes per file with hunks showing exact line modifications.
-
-
-To get started with this project, follow these steps:
-
-1. **Clone this repository**
+That's not all. Let's review how the `read-file` tool is implemented:
+```python
+def parse_tool_call(response):
+    # Define markers for the tool call block
+    start_marker = "[[qwen-tool-start]]"
+    end_marker = "[[qwen-tool-end]]"
     
-    Clone this repo, then go to the Part03 folder
+    # Extract the JSON block between the markers
+    start_index = response.find(start_marker) + len(start_marker)
+    end_index = response.find(end_marker)
+    
+    if start_index == -1 or end_index == -1:
+        raise ValueError("Tool call markers not found in the response.")
+    
+    tool_call_block = response[start_index:end_index].strip()
+    
+    # Parse the JSON content
+    tool_call_data = json.loads(tool_call_block)
+    
+    # Validate the structure of the tool call
+    if "name" not in tool_call_data:
+        raise ValueError("Tool call must include a 'name' field.")
 
-    ```bash
-    git clone https://github.com/jvroig/journey-to-agentic-ai-from-first-principles.git
-    cd Part03
-    ```
+    return tool_call_data
 
-1. **Set Up a Virtual Environment (Optional but Recommended)**
 
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  
-    # On Windows: venv\Scripts\activate
-    ```
+def execute_tool(tool_name, tool_input):
+    # Map tool names to their respective functions
+    tool_functions = {
+        "read-file": read_file,
+    }
 
-3. **Run the Backend API Server**
+    # Retrieve the tool function
+    tool_function = tool_functions[tool_name]
 
-    ```bash
-    python setup.py #this will install dependencies and create start.sh file
-    bash start.sh #this will start the API server
-    ```
-    This will start the Python backend server on http://localhost:5001.
+    try:
+        # Execute the tool function with the provided input
+        result = tool_function(**tool_input)
+        return result
+    except Exception as e:
+        raise ValueError(f"Error executing tool '{tool_name}': {e}")
 
-### Access the Web Interface
+def read_file(path):
+    try:
+        with open(path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        return f"File not found: {path}"
+    except PermissionError:
+        return f"Permission denied: {path}"
+    except Exception as e:
+        return f"Error reading file: {e}"
+```
+In the snippets above, you can see most of the typical flow for handling a tool call.
 
-In your file browser, double-click the file Part03/index.html to load the chat interface in your default browser.
+- `parse_tool_call` finds out if an LLM response includes a tool request.
+- `execute_tool` will be sent the tool request, and will find the correct tool implementation to execute based on the request
+- `read_file` is the tool in our example, and is called by `execute_tool`.
 
-The web interface allows you to communicate with the LLM using natural language commands and tell it to use tools available.
+As you can see, the ultimate tool itself - `read_file` - is nothing more than just another function or program we are executing on behalf of an LLM's request.
+
+This means, when you run MCP servers from third-parties on your local machine (which is how most of the first MCP servers are implemented), you are essentially allowing **arbitrary code execution** - you are trusting that this MCP server isn't also doing malicious things like running malware or siphoning off secrets and creds from your machine.
+
+These two very real dangers make MCP a security nightmare for the unprepared.
