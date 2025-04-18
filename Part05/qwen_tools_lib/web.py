@@ -85,21 +85,10 @@ def fetch_web_page(url, headers=None, timeout=30, clean=True):
                 element.decompose()
                 
             # Remove elements likely to be ads, banners, etc.
-            for element in soup.find_all(class_=re.compile('(ad|banner|menu|sidebar|footer|header|nav|comment|popup|cookie)', re.IGNORECASE)):
-                element.decompose()
+            # for element in soup.find_all(class_=re.compile('(ad|banner|menu|sidebar|footer|header|nav|comment|popup|cookie)', re.IGNORECASE)):
+            #     element.decompose()
                 
-            # Try to find main content containers
-            main_content = None
-            content_elements = soup.find_all(['article', 'main', 'div'], 
-                                            class_=re.compile('(content|article|post|text|body)', re.IGNORECASE))
-            
-            if content_elements:
-                # Find the content element with the most text
-                main_content = max(content_elements, key=lambda x: len(x.get_text(strip=True)))
-                clean_text = main_content.get_text(separator=' ', strip=True)
-            else:
-                # If no content elements found, use the body with minimal cleaning
-                clean_text = soup.get_text(separator=' ', strip=True)
+            clean_text = soup.get_text(separator=' ', strip=True)
                 
             # Clean up extra whitespace
             clean_text = re.sub(r'\s+', ' ', clean_text).strip()
