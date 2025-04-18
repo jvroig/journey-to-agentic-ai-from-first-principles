@@ -25,51 +25,51 @@ Although the sample code defaults to hitting an Alibaba Cloud Model Studio endpo
 
 ### Tools Description
 
-1. **get-cwd**
+1. **get_cwd**
     - **Description**: Get the current working directory.
     - **Parameters**: None.
     - **Returns**: String - information about the current working directory.
 
-2. **read-file**
+2. **read_file**
     - **Description**: Read a file in the filesystem.
     - **Parameters**:
       - `path` (required, string): Path and filename of the file to read.
     - **Returns**: String - the contents of the file specified in `path`.
 
-3. **write-file**
+3. **write_file**
     - **Description**: Write content to a file in the filesystem.
     - **Parameters**:
       - `path` (required, string): Path and filename of the file to write.
       - `content` (required, string): The content to write to the file.
     - **Returns**: String - confirmation message indicating success or failure.
 
-4. **create-directory**
+4. **create_directory**
     - **Description**: Create a new directory in the filesystem.
     - **Parameters**:
       - `path` (required, string): Path of the directory to create.
     - **Returns**: String - confirmation message indicating success or failure.
 
-5. **list-directory**
+5. **list_directory**
     - **Description**: List the contents of a directory in the filesystem.
     - **Parameters**:
       - `path` (optional, string): Path of the directory to list. If not provided, lists the current working directory.
     - **Returns**: String - a list of files and directories in the specified path.
 
-6. **git-clone**
+6. **git_clone**
     - **Description**: Clone a git repository using HTTPS.
     - **Parameters**:
       - `repo_url` (required, string): The HTTPS URL of the repository to clone.
       - `target_path` (optional, string): The path where to clone the repository.
     - **Returns**: String - confirmation message indicating success or failure.
 
-7. **git-commit**
+7. **git_commit**
     - **Description**: Stage all changes and create a commit.
     - **Parameters**:
       - `message` (required, string): The commit message.
       - `path` (optional, string): The path to the git repository (defaults to current directory).
     - **Returns**: String - confirmation message indicating success or failure.
 
-8. **git-restore**
+8. **git_restore**
     - **Description**: Restore the repository or specific files to a previous state.
     - **Parameters**:
       - `commit_hash` (optional, string): The commit hash to restore to. If not provided, unstages all changes.
@@ -77,7 +77,7 @@ Although the sample code defaults to hitting an Alibaba Cloud Model Studio endpo
       - `files` (optional, list): List of specific files to restore. If not provided, restores everything.
     - **Returns**: String - confirmation message indicating success or failure.
 
-9. **git-push**
+9. **git_push**
     - **Description**: Push commits to a remote repository.
     - **Parameters**:
       - `remote` (optional, string): The remote name (defaults to 'origin').
@@ -85,7 +85,7 @@ Although the sample code defaults to hitting an Alibaba Cloud Model Studio endpo
       - `path` (optional, string): The path to the git repository (defaults to current directory).
     - **Returns**: String - confirmation message indicating success or failure.
 
-10. **git-log**
+10. **git_log**
     - **Description**: Get the commit history of the repository.
     - **Parameters**:
       - `path` (optional, string): The path to the git repository (defaults to current directory).
@@ -93,20 +93,20 @@ Although the sample code defaults to hitting an Alibaba Cloud Model Studio endpo
       - `since` (optional, string): Get commits since this date (e.g., "2024-01-01" or "1 week ago").
     - **Returns**: String - JSON formatted commit history with hash, author, date, and message for each commit.
 
-11. **git-show**
+11. **git_show**
     - **Description**: Get detailed information about a specific commit.
     - **Parameters**:
       - `commit_hash` (required, string): The hash of the commit to inspect.
       - `path` (optional, string): The path to the git repository (defaults to current directory).
     - **Returns**: String - JSON formatted commit details including metadata and changed files.
 
-12. **git-status**
+12. **git_status**
     - **Description**: Get the current status of the repository.
     - **Parameters**:
       - `path` (optional, string): The path to the git repository (defaults to current directory).
     - **Returns**: String - JSON formatted repository status including staged, unstaged, and untracked changes.
 
-13. **git-diff**
+13. **git_diff**
     - **Description**: Get the differences between commits, staged changes, or working directory.
     - **Parameters**:
       - `path` (optional, string): The path to the git repository (defaults to current directory).
@@ -118,6 +118,21 @@ Although the sample code defaults to hitting an Alibaba Cloud Model Studio endpo
         - Summary (files changed, total additions/deletions)
         - Detailed changes per file with hunks showing exact line modifications.
 
+14. **brave_web_search**
+    - **Description**: Search the web using Brave Search API. The responses contain summaries. Use fetch_web_page to get the full contents of interesting search results.
+    - **Parameters**:
+      - `query` (required, string): The search query to submit to Brave.
+      - `count` (optional, integer): The number of results to return, defaults to 10.
+    - **Returns**: Object - a JSON object containing search results or error information from the Brave Search API.
+
+15. **fetch_web_page**
+    - **Description**: Fetch content from a specified URL. Good to use after brave_web_search to get more details.
+    - **Parameters**:
+      - `url` (required, string): The URL to fetch content from.
+      - `headers` (optional, dictionary): Custom headers to include in the request, defaults to a standard User-Agent.
+      - `timeout` (optional, integer): Request timeout in seconds, defaults to 30.
+      - `clean` (optional, boolean): Whether to extract only the main content, defaults to True.
+    - **Returns**: String - the cleaned web page content as text, or an error object if the request fails.
 
 To get started with this project, follow these steps:
 
