@@ -24,31 +24,31 @@ Although the sample code defaults to hitting an Alibaba Cloud Model Studio endpo
 
 ### Tool Descriptions
 
-1. **get-cwd**
+1. **get_cwd**
     - **Description**: Get the current working directory.
     - **Parameters**: None.
     - **Returns**: String - information about the current working directory.
 
-2. **read-file**
+2. **read_file**
     - **Description**: Read a file in the filesystem.
     - **Parameters**:
       - `path` (required, string): Path and filename of the file to read.
     - **Returns**: String - the contents of the file specified in `path`.
 
-3. **write-file**
+3. **write_file**
     - **Description**: Write content to a file in the filesystem.
     - **Parameters**:
       - `path` (required, string): Path and filename of the file to write.
       - `content` (required, string): The content to write to the file.
     - **Returns**: String - confirmation message indicating success or failure.
 
-4. **create-directory**
+4. **create_directory**
     - **Description**: Create a new directory in the filesystem.
     - **Parameters**:
       - `path` (required, string): Path of the directory to create.
     - **Returns**: String - confirmation message indicating success or failure.
 
-5. **list-directory**
+5. **list_directory**
     - **Description**: List the contents of a directory in the filesystem.
     - **Parameters**:
       - `path` (optional, string): Path of the directory to list. If not provided, lists the current working directory.
