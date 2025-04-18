@@ -1,4 +1,4 @@
-# The Power of Tool Descriptions: Making Better LLM Tools + Research Power 
+# Tool Descriptions Are Power: Making Better LLM Tools + Research Power 
 
 ## Original Blog Post
 This repo is a companion to the original Medium article [Journey to Agentic AI, Starting From First Principles, Part 5: Making Better LLM Tools + Research Power ]() by JV Roig, that goes through how to allow an LLM to take more actions in our computer. 
@@ -123,11 +123,11 @@ To get started with this project, follow these steps:
 
 1. **Clone this repository**
     
-    Clone this repo, then go to the Part03 folder
+    Clone this repo, then go to the Part05 folder
 
     ```bash
     git clone https://github.com/jvroig/journey-to-agentic-ai-from-first-principles.git
-    cd Part03
+    cd Part05
     ```
 
 1. **Set Up a Virtual Environment (Optional but Recommended)**
@@ -148,6 +148,6 @@ To get started with this project, follow these steps:
 
 ### Access the Web Interface
 
-In your file browser, double-click the file Part03/index.html to load the chat interface in your default browser.
+In your file browser, double-click the file Part05/index.html to load the chat interface in your default browser.
 
 The web interface allows you to communicate with the LLM using natural language commands and tell it to use tools available.
