@@ -3,7 +3,6 @@ import sys
 import os
 
 def create_venv(python_version):
-    # Create a virtual environment named 'venv' using the specified Python version
     subprocess.run([python_version, "-m", "venv", "venv"])
 
 def generate_bash_script():
@@ -11,29 +10,12 @@ def generate_bash_script():
     commands = []
 
     if os.name == "nt":
-        # Activate the virtual environment
         activate_script = "/".join(["venv", "Scripts", "activate"])
-        # activate_script = os.path.join("venv", "Scripts", "activate.bat")
-        # activate_script = activate_script.replace("\\", "\\\\")
-
-        # Install dependencies from requirements.txt
         pip_path = "/".join(['venv', 'Scripts', 'pip'])
-        # pip_path = os.path.join('venv', 'Scripts', 'pip.exe')
-        # pip_path = pip_path.replace("\\", "\\\\")
-
-        # Start the API backend server
         python_path = "/".join(['venv', 'Scripts', 'python'])
-        # python_path = os.path.join('venv', 'Scripts', 'python.exe')
-        # python_path = python_path.replace("\\", "\\\\")
-
-
     else:
         activate_script = os.path.join("venv", "bin", "activate")
-    
-        # Install dependencies from requirements.txt
         pip_path = os.path.join('venv', 'bin', 'pip')
-
-        # Start the API backend server
         python_path = os.path.join('venv', 'bin', 'python')
 
     commands.append(f"source {activate_script}")

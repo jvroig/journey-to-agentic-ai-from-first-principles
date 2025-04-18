@@ -80,11 +80,11 @@ def list_tools():
         - Summary (files changed, total additions/deletions)
         - Detailed changes per file with hunks showing exact line modifications
 
--brave_web_search: Search the web using Brave Search API. The responses here only contain summaries. Use fetch_web_page to get the full contents of interesting search results.
+-brave_web_search: Search the web using Brave Search API. The responses here only contain summaries. Use fetch_web_page to get the full contents of interesting search results, which should be your default behavior whenever you are asked to do research on any topic.
     Parameters:
     - query (required, string): the search query to submit to Brave
     - count (optional, integer): the number of results to return, defaults to 10
-    Returns: Object - a JSON object containing search results or error information from the Brave Search API
+    Returns: Object - a JSON object containing search results or error information from the Brave Search API. Use fetch_web_page on relevant URLs to get the full, deeper information, especially for research tasks.
 
 - fetch_web_page: Fetch content from a specified URL. This is a good tool to use after doing a brave_web_search, in order to get more details from interesting search results.
     Parameters:

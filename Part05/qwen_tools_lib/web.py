@@ -35,8 +35,8 @@ def brave_web_search(query, count=10):
         response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()  # Raise an exception for HTTP errors
         
-        # Return the JSON response
-        return response.json()
+        message = "Web search results: \n" + json.dumps(response.json()) + "\nThe information here are just summaries. Use fetch_web_page tool to retrieve real content for in-depth information, especially for research purposes."
+        return message
     
     except requests.exceptions.RequestException as e:
         return {"error": f"API request failed: {str(e)}"}
